@@ -1,41 +1,67 @@
 ﻿@model IEnumerable<PruebaTecnica.Models.Contrato>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Contratos";
+    var contratos = Model?.ToList() ?? new List<PruebaTecnica.Models.Contrato>();
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="h3 mb-0">Contratos</h1>
+        <small class="text-muted">Total: @contratos.Count</small>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalCuotas)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalCuotas)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
-            </td>
-        </tr>
+    <a asp-action="Create" class="btn btn-primary">
+        + Crear contrato
+    </a>
+</div>
+
+@if (!contratos.Any())
+{
+    <div class="alert alert-info">
+        No hay contratos registrados todavía.
+    </div>
 }
-    </tbody>
-</table>
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().Cliente)</th>
+                    <th class="text-end">@Html.DisplayNameFor(model => model.First().TotalCuotas)</th>
+                    <th class="text-end" style="width: 240px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in contratos)
+                {
+                    <tr>
+                        <td>
+                            <div class="fw-semibold">@item.Cliente</div>
+                            <small class="text-muted">Contrato #@item.ContratoId</small>
+                        </td>
+
+                        <td class="text-end">
+                            @item.TotalCuotas
+                        </td>
+
+                        <td class="text-end">
+                            <div class="btn-group" role="group">
+                                <a asp-action="Details" asp-route-id="@item.ContratoId" class="btn btn-outline-secondary btn-sm">
+                                    Ver
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.ContratoId" class="btn btn-outline-primary btn-sm">
+                                    Editar
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.ContratoId" class="btn btn-outline-danger btn-sm">
+                                    Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
