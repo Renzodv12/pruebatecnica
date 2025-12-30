@@ -1,7 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using PruebaTecnica.Context;
+using PruebaTecnica.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddDbContext<PruebaTecnicaDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IContrato, ContratoService>();
+
 
 var app = builder.Build();
 
@@ -22,7 +34,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=contratoes}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

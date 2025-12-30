@@ -1,0 +1,40 @@
+﻿@model PruebaTecnica.Models.PorcentajePagoContrato
+
+@{
+    ViewData["Title"] = "Detalle del Contrato";
+}
+
+<h1>Detalle del Contrato</h1>
+
+<div>
+    <h4>Resumen de Pago</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CuotasPagadas)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.CuotasPagadas)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TotalCuotas)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.TotalCuotas)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PorcentajePagado)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PorcentajePagado) %
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</div>
