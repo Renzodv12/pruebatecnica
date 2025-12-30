@@ -1,0 +1,28 @@
+INSERT INTO dbo.Contrato (Cliente, TotalCuotas)
+VALUES 
+('Cliente Prueba 1', 6),
+('Cliente Prueba 2', 12);
+
+INSERT INTO dbo.Cuota (ContratoId, Monto, Estado)
+VALUES
+(1, 150000, 'PAGADA'),
+(1, 150000, 'PAGADA'),
+(1, 150000, 'PAGADA'),
+(1, 150000, 'PAGADA'),
+(1, 150000, 'PENDIENTE'),
+(1, 150000, 'PENDIENTE');
+
+INSERT INTO dbo.Cuota (ContratoId, Monto, Estado)
+VALUES
+(2, 200000, 'PAGADA'),
+(2, 200000, 'PAGADA'),
+(2, 200000, 'PAGADA'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE'),
+(2, 200000, 'PENDIENTE');
